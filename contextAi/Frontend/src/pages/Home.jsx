@@ -5,6 +5,11 @@ import { api } from "../../utils/axios";
 import { FcGoogle } from "react-icons/fc";
 import { useSelector, useDispatch } from "react-redux";
 import { setUserdata } from "../redux/userSlice.js";
+import ChatArea from "../components/ChatArea.jsx";
+import Artifsct from "../components/Artifsct.jsx";
+import SideBar from "../components/SideBar.jsx";
+
+
 
 function Home() {
   const { userData } = useSelector((state) => state.user);
@@ -53,6 +58,12 @@ function Home() {
 
   return (
     <div className="h-screen flex bg-[#0d0f14] text-white overflow-hidden">
+      <SideBar/>
+      <ChatArea/>
+      <Artifsct/>
+      
+      
+      
       {!userData && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur">
           <div className="w-[360px] bg-[#14161f] border border-white/5 rounded-3xl p-8 flex flex-col gap-6 shadow-2xl">
