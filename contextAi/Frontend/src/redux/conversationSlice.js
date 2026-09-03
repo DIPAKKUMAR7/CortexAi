@@ -4,19 +4,23 @@ const conversationSlice = createSlice({
   name: "conversation",
   initialState: {
     conversations:[],
+    selectedConversation:null,
 
   },
   reducers: {
-    setConversation:(state,action) => {
+    setConversations:(state,action) => {
         state.conversations = action.payload
     },
-    addConversation:(state,action) => {
+    addConversations:(state,action) => {
         state.conversations.unshift(action.payload)
+    },
+    setSelectedConversations:(state,action) => {
+        state.selectedConversation = action.payload
     }
 }
 
 })
 
-export const { setConversation , addConversation } = conversationSlice.actions
+export const { setConversations , addConversations , setSelectedConversations } = conversationSlice.actions
 
 export default conversationSlice.reducer

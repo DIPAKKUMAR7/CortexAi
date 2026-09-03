@@ -1,12 +1,12 @@
-import api from "../../utils/axios";
+import { api }  from "../../utils/axios.js";
 
-export const getConversation = async () => {
+export const createConversation = async () => {
   try {
-    const {data} = await api.get("/api/chat/get-conversations")
+    const {data} = await api.get("/api/chat/create-conversation")
     return data
 }
   catch (error) {
-    console.error("Error getting conversation:", error);
+    console.error("Error creating conversation:", error);
     return []
 }
 
