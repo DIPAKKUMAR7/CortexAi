@@ -15,6 +15,7 @@ app.use(cors({
     origin: process.env.FRONTEND_URL,
     credentials:true
 }))
+console.log("FRONTEND_URL:", process.env.FRONTEND_URL);
 app.use(cookieParser()) 
 app.use("/api/auth", proxy(process.env.AUTH_SERVICE))
 app.use("/api/chat",protect, proxyWithHeader(process.env.CHAT_SERVICE))

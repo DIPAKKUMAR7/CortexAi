@@ -1,24 +1,20 @@
-import { getApp, getApps, initializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app";
 import {
   getAuth,
-  GoogleAuthProvider
+  GoogleAuthProvider,
 } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: "cortexai-bf9a3.firebaseapp.com",
-  projectId: "cortexai-bf9a3",
-  storageBucket: "cortexai-bf9a3.firebasestorage.app",
-  messagingSenderId: "233437917172",
-  appId: "1:233437917172:web:7c71875e119f9da2edd3a1",
-  measurementId: "G-KT6820XS56"
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
-// Initialize Firebase
-const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-// Firebase Authentication
 export const auth = getAuth(app);
-
-// Google Authentication Provider
 export const googleProvider = new GoogleAuthProvider();
