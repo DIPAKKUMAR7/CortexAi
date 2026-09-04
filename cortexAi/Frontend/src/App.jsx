@@ -1,24 +1,8 @@
-import { useEffect } from 'react'
-import  getCurrentUser  from './features/getCurrentUser.js'
 import Home from './pages/Home'
-import { useDispatch } from 'react-redux'
-import { setUserdata } from './redux/userSlice.js'
 
 function App() {
-
-const dispatch = useDispatch()
-useEffect(() => {
-    const getUser = async () => {
-      const data = await getCurrentUser()
-      dispatch(setUserdata(data))
-    }
-    getUser()
-  }, [dispatch])
   return (
-    <>
-      <Home></Home>
-
-    </>
+    <Home />
   )
 }
 
