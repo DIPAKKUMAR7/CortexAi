@@ -1,22 +1,24 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getApp, getApps, initializeApp } from "firebase/app";
+import {
+  getAuth,
+  GoogleAuthProvider
+} from "firebase/auth";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: "cortexAi-f9231.firebaseapp.com",
-  projectId: "cortexAi-f9231",
-  storageBucket: "cortexAi-f9231.firebasestorage.app",
-  messagingSenderId: "289517388456",
-  appId: "1:289517388456:web:b6f644dc10e4118a2f789d"
+  authDomain: "cortexai-bf9a3.firebaseapp.com",
+  projectId: "cortexai-bf9a3",
+  storageBucket: "cortexai-bf9a3.firebasestorage.app",
+  messagingSenderId: "233437917172",
+  appId: "1:233437917172:web:7c71875e119f9da2edd3a1",
+  measurementId: "G-KT6820XS56"
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-export const auth=getAuth(app)
-export const googleProvider = new GoogleAuthProvider()
+const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 
+// Firebase Authentication
+export const auth = getAuth(app);
+
+// Google Authentication Provider
+export const googleProvider = new GoogleAuthProvider();
