@@ -15,13 +15,15 @@ function SideBar() {
 
   useEffect(
     () =>{
+      if (!userData) return
+
       const getConv = async () =>{
         const data = await getConversations()
         dispatch(setConversations(data))
       }
     getConv()
     }
-  ,[])
+  ,[userData, dispatch])
   
   const handleCreateConversation = async () => {
     const data = await createConversation()

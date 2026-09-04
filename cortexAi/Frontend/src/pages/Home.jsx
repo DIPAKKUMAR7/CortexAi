@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { signInWithPopup } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { getRedirectResult, signInWithPopup, signInWithRedirect } from "firebase/auth";
 import { auth, googleProvider } from "../../utils/firebase";
 import { api } from "../../utils/axios";
 import { FcGoogle } from "react-icons/fc";
@@ -33,6 +33,22 @@ function Home() {
     }
   };
 
+  useEffect(() => {
+    const completeRedirectLogin = async () => {
+      try {
+        const res = await getRedirectResult(auth);
+        if (res) {
+          const token = await res.user.getIdToken();
+          await handleLogin(token);
+        }
+      } catch (error) {
+        console.error("Firebase redirect login failed:", error);
+      }
+    };
+
+    completeRedirectLogin();
+  }, []);
+
   const googleLogin = async () => {
     if (loading) return;
 
@@ -47,9 +63,14 @@ function Home() {
     } catch (error) {
       if (
         error.code !== "auth/cancelled-popup-request" &&
-        error.code !== "auth/popup-closed-by-user"
+        error.code !== "auth/popup-closed-by-user" &&
+        error.code !== "auth/popup-blocked"
       ) {
         console.error("Firebase auth error:", error);
+      }
+
+      if (error.code === "auth/popup-blocked") {
+        await signInWithRedirect(auth, googleProvider);
       }
     } finally {
       setLoading(false);

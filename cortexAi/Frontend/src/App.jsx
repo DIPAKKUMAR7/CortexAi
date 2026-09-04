@@ -13,7 +13,7 @@ useEffect(() => {
       dispatch(setUserdata(data))
     }
     getUser()
-  }, [])
+  }, [dispatch])
   return (
     <>
       <Home></Home>

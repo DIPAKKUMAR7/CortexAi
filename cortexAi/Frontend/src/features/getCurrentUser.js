@@ -8,9 +8,9 @@ const getCurrentUser = async () => {
 
     return data;
   } catch (error) {
-    console.error("Status:", error.response?.status);
-    console.error("Backend error:", error.response?.data);
-    console.error("Full error:", error);
+    if (error.response?.status !== 401) {
+      console.error("Error getting current user:", error);
+    }
 
     return null;
   }
